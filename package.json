@@ -1,0 +1,22 @@
+{
+  "name": "codewarskatas",
+  "version": "1.0.0",
+  "description": "solutions for codewars katas",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byverdu/codeWarsKatas.git"
+  },
+  "author": "@Byverdu <byverdu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byverdu/codeWarsKatas/issues"
+  },
+  "homepage": "https://github.com/byverdu/codeWarsKatas#readme",
+  "dependencies": {
+    "jest": "^23.1.0"
+  }
+}
