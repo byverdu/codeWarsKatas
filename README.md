@@ -16,6 +16,8 @@
 
 ### Katas
 
+[My profile at codeWars](https://www.codewars.com/users/byverdu/completed_solutions)
+
 [RGB To Hex Conversion](test/rgbToHex.test.js)
 
 [Unique In Order](test/uniqueInOrder.test.js)
@@ -23,3 +25,5 @@
 [Highest Scoring Word](test/highestScoringWord.test.js)
 
 [Count Smiley Faces](test/countSmileyFaces.test.js)
+
+[Moving Zeros To The End](test/moveZeros.test.js)
