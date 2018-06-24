@@ -17,3 +17,4 @@
 ### Katas
 
 [RGB To Hex Conversion](test/rgbToHex.test.js)
+[Unique In Order](test/uniqueInOrder.js)
