@@ -17,5 +17,9 @@
 ### Katas
 
 [RGB To Hex Conversion](test/rgbToHex.test.js)
+
 [Unique In Order](test/uniqueInOrder.test.js)
+
 [Highest Scoring Word](test/highestScoringWord.test.js)
+
+[Count Smiley Faces](test/countSmileyFaces.test.js)

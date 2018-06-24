@@ -8,6 +8,10 @@
   If two words score the same, return the word that appears earliest in the original string.
 
   All letters will be lowercase and all inputs will be valid.
+
+  highestScoringWord('man i need a taxi up to ubud') // taxi
+  highestScoringWord('what time are we climbing up the volcano') // volcano
+  highestScoringWord('take me to semynak') // semynak
 */
 
 const alphabet = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z';
