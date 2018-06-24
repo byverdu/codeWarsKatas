@@ -16,4 +16,4 @@
 
 ### Katas
 
-[RGB To Hex Conversion]('./test/rgbToHex.test.js')
+[RGB To Hex Conversion](test/rgbToHex.test.js)
