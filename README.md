@@ -29,3 +29,6 @@
 :pill: [Moving Zeros To The End](test/moveZeros.test.js)
 
 :pill: [Find Function In Array](test/findFunctionInArray.test.js)
+
+:pill: [Find Function In Array](test/isIntArray.test.js)
+
