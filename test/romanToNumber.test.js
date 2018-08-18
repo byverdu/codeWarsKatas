@@ -24,8 +24,48 @@ function ErrorManager (type) {
   return errorTypes[type]();
 }
 
+function hasInvalidRomanChars (charsToCheck, romanValues) {
+  let isInvalid = false;
+  const validChars = Object.keys(romanValues).join('');
 
-function RomanToNumber(romanNumber) {
+  charsToCheck.split('')
+    .forEach(element => {
+      if (validChars.indexOf(element) === -1) {
+        isInvalid = true;
+      }
+    });
+
+  return isInvalid;
+};
+
+function hasWrongAmountNumbers (romanNumber) {
+  const tempArr = romanNumber.split('');
+  let currPosition = 0;
+  let nextPosition = 1;
+  let charCount = 0;
+  const hasMoreThanThree = count => count > 3;
+  const hasThreeOrLess = count => count <= 3;
+
+  while (currPosition !== tempArr.length) {
+    const currChar = tempArr[currPosition];
+    const nextChar = tempArr[nextPosition];
+
+    if (currChar === nextChar || currChar === tempArr[currPosition - 1]) {
+      charCount += 1;
+    }
+
+    if (currChar !== nextChar && hasThreeOrLess(charCount)) {
+      charCount = 0;
+    }
+
+    currPosition += 1;
+    nextPosition += 1;
+  }
+
+  return hasMoreThanThree(charCount);
+}
+
+function romanToNumber(romanNumber) {
   const tempArr = romanNumber.split('');
   const romanValues = {
     'I': 1,
@@ -35,47 +75,12 @@ function RomanToNumber(romanNumber) {
     'C': 100,
     'M': 1000
   };
-  let hasWrongAmountNumbers;
-  let keepLooping = true;
-  let charLength = (tempArr.length);
-  let currPosition = 0;
-  let nextPosition = 1;
-  let charCount = 0;
-  const hasMoreThanThree = count => count > 3;
-  const hasThreeOrLess = count => count <= 3;
-  const hasInvalidRomanChars = charsToCheck => {
-    let isValid = true;
-    const validChars = Object.keys(romanValues).join('');
 
-    tempArr.forEach(element => {
-      if (!validChars.includes(element)) {
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
-
-  while(currPosition !== charLength) {
-    if (tempArr[currPosition] === tempArr[nextPosition] || tempArr[currPosition] === tempArr[currPosition - 1]) {
-      charCount += 1;
-    }
-
-    if (tempArr[currPosition] !== tempArr[nextPosition] && hasThreeOrLess(charCount)) {
-      charCount = 0;
-    }
-    
-    currPosition += 1;
-    nextPosition += 1;
-
-    hasWrongAmountNumbers = hasMoreThanThree(charCount);
-  }
-
-  if (!hasInvalidRomanChars(romanNumber)) {
+  if (hasInvalidRomanChars(romanNumber, romanValues)) {
     ErrorManager(INVALID_CHARS);
   }
 
-  if (hasWrongAmountNumbers) {
+  if (hasWrongAmountNumbers(romanNumber)) {
     ErrorManager(WRONG_AMOUNT_CHARS);
   }
 
@@ -90,15 +95,16 @@ function RomanToNumber(romanNumber) {
   }, 0);
 }
 
-describe('RomanToNumber function', () => {
-  it('RomanToNumber is defined', () => {
-    expect(RomanToNumber).toBeDefined();
+describe('romanToNumber function', () => {
+  it('romanToNumber is defined', () => {
+    expect(romanToNumber).toBeDefined();
   });
-  it('RomanToNumber should only accept valid roman numbers', () => {
-    expect(() => RomanToNumber('Z')).toThrow('Your roman number has invalid characters');
+  it('romanToNumber should only accept valid roman numbers', () => {
+    expect(() => romanToNumber('Z')).toThrow('Your roman number has invalid characters');
+    expect(() => romanToNumber('IZI')).toThrow('Your roman number has invalid characters');
   });
-  it('RomanToNumber should throw an error if more than 3 same characters are in a row', () => {
-    expect(() => RomanToNumber('IIII')).toThrow('Your roman number has more than 3 equal characters in a row');
-    expect(() => RomanToNumber('IVVVV')).toThrow('Your roman number has more than 3 equal characters in a row');
+  it('romanToNumber should throw an error if more than 3 same characters are in a row', () => {
+    expect(() => romanToNumber('IIII')).toThrow('Your roman number has more than 3 equal characters in a row');
+    expect(() => romanToNumber('IVVVV')).toThrow('Your roman number has more than 3 equal characters in a row');
   });
 });
