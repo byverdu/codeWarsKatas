@@ -30,5 +30,5 @@
 
 :pill: [Find Function In Array](test/findFunctionInArray.test.js)
 
-:pill: [Find Function In Array](test/isIntArray.test.js)
+:pill: [Is Array of integers](test/isIntArray.test.js)
 

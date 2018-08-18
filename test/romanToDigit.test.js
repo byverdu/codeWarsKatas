@@ -1,11 +1,14 @@
 /*
-  Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+  Write a function romanToDigit with the below signature.
 
-  Examples: 
+  - converts a Roman nunber into his correspendent arabic number
+  - should throw an error if the Roman number is wrong
+  - returns false for every other input.
 
-  uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
-  uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
-  uniqueInOrder([1,2,2,3,3])       == [1,2,3]
+  Test.assertEquals(romanToDigit('III'), true, "Input: 3");
+  Test.assertEquals(romanToDigit('IV'), true, "Input: 4");
+  Test.assertEquals(romanToDigit('VI'), true, "Input: 6");
+  Test.assertEquals(romanToDigit('IIII'), false, "Input: That's not a valid Roman Number");
 */
 
 const WRONG_AMOUNT_CHARS = 'WRONG_AMOUNT_CHARS';
@@ -65,7 +68,7 @@ function hasWrongAmountNumbers (romanNumber) {
   return hasMoreThanThree(charCount);
 }
 
-function romanToNumber(romanNumber) {
+function romanToDigit(romanNumber) {
   const tempArr = romanNumber.split('');
   const romanValues = {
     'I': 1,
@@ -95,16 +98,16 @@ function romanToNumber(romanNumber) {
   }, 0);
 }
 
-describe('romanToNumber function', () => {
-  it('romanToNumber is defined', () => {
-    expect(romanToNumber).toBeDefined();
+describe('romanToDigit function', () => {
+  it('romanToDigit is defined', () => {
+    expect(romanToDigit).toBeDefined();
   });
-  it('romanToNumber should only accept valid roman numbers', () => {
-    expect(() => romanToNumber('Z')).toThrow('Your roman number has invalid characters');
-    expect(() => romanToNumber('IZI')).toThrow('Your roman number has invalid characters');
+  it('romanToDigit should only accept valid roman numbers', () => {
+    expect(() => romanToDigit('Z')).toThrow('Your roman number has invalid characters');
+    expect(() => romanToDigit('IZI')).toThrow('Your roman number has invalid characters');
   });
-  it('romanToNumber should throw an error if more than 3 same characters are in a row', () => {
-    expect(() => romanToNumber('IIII')).toThrow('Your roman number has more than 3 equal characters in a row');
-    expect(() => romanToNumber('IVVVV')).toThrow('Your roman number has more than 3 equal characters in a row');
+  it('romanToDigit should throw an error if more than 3 same characters are in a row', () => {
+    expect(() => romanToDigit('IIII')).toThrow('Your roman number has more than 3 equal characters in a row');
+    expect(() => romanToDigit('IVVVV')).toThrow('Your roman number has more than 3 equal characters in a row');
   });
 });
