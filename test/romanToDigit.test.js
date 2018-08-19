@@ -71,12 +71,13 @@ function hasWrongAmountNumbers (romanNumber) {
 function romanToDigit(romanNumber) {
   const tempArr = romanNumber.split('');
   const romanValues = {
-    'I': 1,
-    'V': 5,
-    'X': 10,
-    'L': 50,
-    'C': 100,
-    'M': 1000
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
   };
 
   if (hasInvalidRomanChars(romanNumber, romanValues)) {
@@ -87,18 +88,31 @@ function romanToDigit(romanNumber) {
     ErrorManager(WRONG_AMOUNT_CHARS);
   }
 
-  return tempArr.reduce((prev, curr, ind, arr) => {
-    if (romanValues[curr] === romanValues[arr[ind+1]] || romanValues[curr] > romanValues[arr[ind+1]] || !romanValues[arr[ind+1]]) {
-      prev += romanValues[curr];
-    } else if (romanValues[curr] < romanValues[arr[ind+1]]) {
-      prev -= romanValues[curr];
+  return tempArr.reduce((acc, curr, ind, arr) => {
+    const currValue = romanValues[curr];
+    const nextValue = romanValues[arr[ind+1]];
+
+    if (currValue === nextValue || currValue > nextValue || !nextValue) {
+      acc += currValue;
+    } else if (currValue < nextValue) {
+      acc -= currValue;
     }
 
-    return prev;
+    return acc;
   }, 0);
 }
 
 describe('romanToDigit function', () => {
+  const romanValues = {
+    XXV: 25,
+    XXX: 30,
+    IV: 4,
+    CCC: 300,
+    CMLXXXIII: 983,
+    MMM: 3000,
+    LVIII: 58
+  };
+
   it('romanToDigit is defined', () => {
     expect(romanToDigit).toBeDefined();
   });
@@ -110,4 +124,11 @@ describe('romanToDigit function', () => {
     expect(() => romanToDigit('IIII')).toThrow('Your roman number has more than 3 equal characters in a row');
     expect(() => romanToDigit('IVVVV')).toThrow('Your roman number has more than 3 equal characters in a row');
   });
+
+  Object.keys(romanValues)
+    .forEach(key => {
+      it(`romanToDigit should return for ${key} => ${romanValues[key]}`, () => {
+        expect(romanToDigit(key)).toEqual(romanValues[key]);
+      });    
+    });
 });
