@@ -32,3 +32,7 @@
 
 :pill: [Is Array of integers](test/isIntArray.test.js)
 
+:pill: [Convert Roman to Digit](test/romanToDigit.test.js)
+
+:pill: [FizzBuzz](test/fizzBuzz.test.js)
+
