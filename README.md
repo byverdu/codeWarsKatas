@@ -36,3 +36,5 @@
 
 :pill: [FizzBuzz](test/fizzBuzz.test.js)
 
+:pill: [Strip Code from file](test/strip.test.js)
+
